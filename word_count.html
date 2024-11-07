@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="font-awesome3/css/all.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: bold;
+            color: #5e9cf2;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 1px solid #d1d9e6;
+            border-radius: 8px;
+            outline: none;
+            resize: vertical;
+            min-height: 200px;
+            margin-bottom: 1rem;
+            background-color: #f0f8ff;
+            color: #333;
+            transition: border 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: #5e9cf2;
+            box-shadow: 0 0 5px rgba(94, 156, 242, 0.2);
+        }
+
+        .row {
+            font-size: 1rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        #parag {
+            font-weight: bold;
+            color: #5e9cf2;
+        }
+
+        #space {
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Microsoft Word Counter</h1>
+        <textarea id="text" oninput="count()" placeholder="Start typing your message here..."></textarea>
+        <div class="row">
+            <div>
+                <span id="parag">0 characters</span>
+                <span>of</span>
+                <span>450</span>
+            </div>
+            <div id="space">0 words written</div>
+        </div>
+    </div>
+
+    <script>
+        function count() {
+            let textarea = document.getElementById("text").value.trim();
+            let span = document.getElementById("parag");
+
+            // Count words and characters
+            let words = textarea.length ? textarea.split(/\s+/).length : 0;
+            let letters = textarea.replace(/\s+/g, '').length;
+
+            // Display counts
+            document.getElementById('space').textContent = `${words} words written`;
+            span.textContent = `${letters} characters`;
+
+            // Change textarea color based on length
+            let color = '#333';
+            if (letters >= 200) color = '#f8b400';
+            if (letters >= 400) color = '#f2453d';
+            document.getElementById("text").style.color = color;
+        }
+    </script>
+</body>
+
+</html>
